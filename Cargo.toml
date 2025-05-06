@@ -1,0 +1,16 @@
+[package]
+name = "gem-mirror"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+cacache = "13.1.0"
+clap = { version = "4.5.37", features = ["derive"] }
+flate2 = "1.1.1"
+miette = { version = "^7.6.0", features = ["serde", "fancy"] }
+reqwest = { version = "0.12.15", features = ["json", "blocking"] }
+serde = "1.0.219"
+serde_json = "1.0.140"
+ssri = "9.2.0"
+tar = "0.4.44"
+url = "2.5.4"
