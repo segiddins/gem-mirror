@@ -222,7 +222,6 @@ pub fn update_store<T: Store>(mut store: T) -> miette::Result<()> {
                     versions,
                 };
 
-                println!("Namespace: {}", namespace.name);
                 if let Some(existing) = existing {
                     if existing.info_checksum != namespace.info_checksum {
                         println!(
