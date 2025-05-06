@@ -185,7 +185,13 @@ pub fn update_store<T: Store>(mut store: T) -> miette::Result<()> {
                 }
 
                 let gem_url = format!("{}/info/{}", index.source, name);
-                let resp = reqwest::blocking::get(&gem_url).unwrap();
+                let resp = match reqwest::blocking::get(&gem_url) {
+                    Ok(resp) => resp,
+                    Err(e) => {
+                        eprintln!("Failed to fetch {}: {}", gem_url, e);
+                        continue;
+                    }
+                };
                 let mut info_checksum = resp.headers().get("ETag").unwrap().to_str().unwrap();
                 info_checksum = info_checksum.trim_start_matches("W/");
                 info_checksum = info_checksum.trim_matches('"');
