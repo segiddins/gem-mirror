@@ -184,10 +184,6 @@ pub fn update_store<T: Store>(mut store: T) -> miette::Result<()> {
                     // eprintln!("New gem: {} {} vs {:?}", name, info_checksum, existing);
                 }
 
-                if name.chars().next().unwrap().is_ascii_lowercase() {
-                    continue;
-                }
-
                 let gem_url = format!("{}/info/{}", index.source, name);
                 let resp = reqwest::blocking::get(&gem_url).unwrap();
                 let mut info_checksum = resp.headers().get("ETag").unwrap().to_str().unwrap();
